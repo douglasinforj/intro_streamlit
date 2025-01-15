@@ -14,6 +14,6 @@ def login():
             st.session_state.authenticated =True
             st.session_state.username = username
             st.success(message)
-            st.st.rerun()
+            st.rerun()
         else:
             st.error(message)
