@@ -10,21 +10,23 @@ if "authenticated" not in st.session_state:
     st.session_state.authenticated  = False
     st.session_state.username = ""
     st.session_state.show_register = False #adiciona controle para alterarnar login e registro
+   
 
+def set_show_register(value):                    # Alterna entre login e registro
+    st.session_state.show_register = value
+    st.rerun()                                # não funciona: st.experimental_rerun()
 
 
 #função que gerencia login e registro
 def auth_page():
     if st.session_state.show_register:
         register()  # Renderiza a view de registro
-        st.button("Já tem uma conta? Faça login", on_click=lambda: set_show_register(False))
+        if st.button("Já tem uma conta? Faça login"):
+            set_show_register(False)
     else:
-        login()     #Renderiza login
-        st.button("Não tem uma conta? Registre-se", on_click=lambda: set_show_register(True))   
-
-def set_show_register(value):                    # Alterna entre login e registro
-    st.session_state.show_register = value
-    st.rerun()                                # não funciona: st.experimental_rerun()
+        login()  # Renderiza a view de login
+        if st.button("Não tem uma conta? Registre-se"):
+            set_show_register(True)
 
 
 
@@ -41,7 +43,9 @@ else:
     if logout_button:
         st.session_state.authenticated =False
         st.session_state.username = ""
-        st.rerun()                                # não funciona: st.experimental_rerun()
+
+        # Atribuir diretamente os estados para "resetar" a interface
+        st.experimental_set_query_params()  # Usado para "recarregar" sem conflitos
 
 
     # Renderiza páginas, confome a escolha no botão radio
