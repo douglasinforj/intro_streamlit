@@ -28,3 +28,26 @@ def set_show_register(value):                    # Alterna entre login e registr
 
 
 
+# Verifica a autenticação
+if not st.session_state.authenticated:
+    auth_page()                                  #Renderiza login ou registro
+else:
+    #Barra Lateral de navegação:
+    st.sidebar.title(f"Bem Vindo, {st.session_state.username}")
+    page = st.sidebar.radio("Navegação", ["Home", "App1", "App2"])      #botão de navegação
+    logout_button = st.sidebar.button("Logout")
+
+    #botão de logout
+    if logout_button:
+        st.session_state.authenticated =False
+        st.session_state.username = ""
+        st.st.rerun()                                # não funciona: st.experimental_rerun()
+
+
+    # Renderiza páginas, confome a escolha no botão radio
+    if page == "Home":
+        home()
+    elif page == "App1":
+        app1()
+    elif page == "App2":
+        app2
