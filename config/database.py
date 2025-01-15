@@ -1,6 +1,6 @@
 import mysql.connector
 from mysql.connector import Error
-from settings import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT
+from config.settings import DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, DB_PORT
 
 def get_connection():
     try:
