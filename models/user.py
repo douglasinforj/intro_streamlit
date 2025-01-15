@@ -27,3 +27,21 @@ def register_user(username, password):
         return True, "Usuário registrado com sucesso!"
     return False, "Falha ao registrar usuário"
 
+
+def authenticate_user(username, password):
+    connection = get_connection()
+    if not connection:
+        return False
+    
+    try:
+        cursor = connection.cursor(dictionary=True)
+        query = "SELECT password FROM users WHERE username = %s"
+        cursor.execute(query, (username,))
+        user = cursor.fetchone()
+
+        if user and bcrypt.checkpw(password.encode('utf-8'), user['password'].encode('utf-8')):
+            return True
+        return False
+    finally:
+        connection.close()
+                                   
