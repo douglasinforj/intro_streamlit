@@ -1,7 +1,7 @@
 import bcrypt
 from config.database import get_connection
 
-def create_user(usename, password):
+def create_user(username, password):
     connection = get_connection()
     if not connection:
         return False
@@ -11,7 +11,7 @@ def create_user(usename, password):
     try:
         cursor = connection.cursor()
         query = "INSERT INTO users (username, password) VALUES (%s, %s)"
-        cursor.execute(query, hasshed_password.decode('utf8'))               #chamando a variavel para hash de senha
+        cursor.execute(query, (username,hasshed_password.decode('utf8')))               #chamando a variavel para hash de senha
         connection.commit()
         return True
 
