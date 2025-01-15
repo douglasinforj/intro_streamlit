@@ -5,7 +5,7 @@ def login():
     st.title("Login")
 
     username = st.text_input("Usuário")
-    password = st.text_input("Senha", type=password)
+    password = st.text_input("Senha", type='password')
     login_button = st.button("Entrar")
 
     if login_button:
