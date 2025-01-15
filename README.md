@@ -19,7 +19,8 @@ intro_streamlit/
 │   ├── login_view.py     
 │   ├── home_view.py      
 │   ├── app1_view.py      
-│   └── app2_view.py      
+│   └── app2_view.py 
+|   └── register_view.py
 └── controllers/
     └── auth_controller.py 
 
