@@ -12,6 +12,7 @@ def login():
         authenticated, message = login_user(username, password)
         if authenticated:
             st.session_state.authenticated =True
+            st.session_state.username = username
             st.success(message)
             st.st.rerun()
         else:
