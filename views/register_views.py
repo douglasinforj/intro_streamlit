@@ -10,6 +10,10 @@ def register():
     register_button = st.button("Registrar")
 
     if register_button:
+        if not username or not password:
+            st.error("Usuário e senha são obrigatórios!")
+            return
+        
         success, message = register_user(username, password)
         if success:
             st.success(message)
