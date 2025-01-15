@@ -24,7 +24,7 @@ def auth_page():
 
 def set_show_register(value):                    # Alterna entre login e registro
     st.session_state.show_register = value
-    st.st.rerun()                                # não funciona: st.experimental_rerun()
+    st.rerun()                                # não funciona: st.experimental_rerun()
 
 
 
@@ -41,7 +41,7 @@ else:
     if logout_button:
         st.session_state.authenticated =False
         st.session_state.username = ""
-        st.st.rerun()                                # não funciona: st.experimental_rerun()
+        st.rerun()                                # não funciona: st.experimental_rerun()
 
 
     # Renderiza páginas, confome a escolha no botão radio
