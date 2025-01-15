@@ -20,3 +20,10 @@ def create_user(usename, password):
         return False
     finally:
         connection.close()
+
+
+def register_user(username, password):
+    if create_user(username, password):
+        return True, "Usuário registrado com sucesso!"
+    return False, "Falha ao registrar usuário"
+
